@@ -51,7 +51,8 @@ pipeline {
                 // Confirm the container is running and the website responds successfully.
                 sh '''
                     docker ps
-                    curl --fail --silent --show-error http://localhost:${HOST_PORT}
+                    curl -f --silent --show-error http://host.docker.internal:8081
+                    echo 'Website verification succeeded.'
                 '''
             }
         }
