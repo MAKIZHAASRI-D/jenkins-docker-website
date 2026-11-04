@@ -50,8 +50,9 @@ pipeline {
             steps {
                 // Confirm the container is running and the website responds successfully.
                 sh '''
+                    set -e
                     docker ps
-                    curl -f --silent --show-error http://host.docker.internal:8081
+                    docker exec my-website wget -qO- http://127.0.0.1
                     echo 'Website verification succeeded.'
                 '''
             }
